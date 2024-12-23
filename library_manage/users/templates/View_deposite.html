@@ -1,0 +1,18 @@
+<!-- In your profile.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h3>Your Profile</h3>
+    <p>Total Deposit Amount: <strong>{{ total_deposit }} USD</strong></p>
+
+    <h3>Your Deposits</h3>
+    <ul>
+      {% for deposit in deposits %}
+        <li>{{ deposit.amount }} USD - {{ deposit.date }}</li>
+      {% empty %}
+        <li>No deposits yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- buy_result.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'homepage' %}" class="btn btn-primary mt-3">Go Back to Home</a>
+</div>
+{% endblock %}

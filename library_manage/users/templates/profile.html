@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div>
+    <a class="btn btn-primary" href="{% url 'edit_profile' %}" >Edit Your Profile </a>
+    <a class="btn btn-primary" href="{% url 'view_deposite' %}" >View Deposit </a>
+    <a class="btn btn-primary" href="{% url 'add_category' %}" >Add Category </a>
+</div>
+
+<h1 class="text-center my-4">User Profile</h1>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h3>User Information</h3>
+      <table class="table table-bordered">
+        <tr>
+          <th>Username</th>
+          <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+          <th>Full Name</th>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <th>Date Joined</th>
+          <td>{{ user.date_joined|date:"Y-m-d" }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h3>Account Information</h3>
+      <p><strong>Total Deposit:</strong> ${{ total_deposit }}</p>
+    </div>
+  </div>
+
+  <h1 class="text-center my-4">Borrow History</h1>
+  <table class="table table-bordered table-striped table-hover mb-5">
+    <thead class="table-dark">
+      <tr>
+        <th>Book ID</th>
+        <th>Book Title</th>
+        <th>Book Price</th>
+        <th>Borrow Date</th>
+        <th>Return Date</th>
+        <th>Remaining Deposit</th>
+        <th>Return</th>
+      </tr>
+    </thead>
+    <tbody>
+          {% for record in borrow_details %}
+          <tr>
+              <td>{{ record.book_id }}</td>
+              <td>{{ record.book_title }}</td>
+              <td>${{ record.book_price }}</td>
+              <td>{{ record.borrow_date }}</td>
+              <td>{{ record.return_date }}</td>
+              <td>${{ record.deposit_used }}</td>
+              {% if not record.return_date %}
+                  <td><a href="{% url 'return_book' borrowing_id=record.id %}" class="btn btn-warning">Return</a></td>
+              {% else %}
+                  <td>Returned</td>
+              {% endif %}
+          </tr>
+          {% empty %}
+              <tr>
+                  <td colspan="6" class="text-center">No borrow history found.</td>
+              </tr>
+          {% endfor %}
+  
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
