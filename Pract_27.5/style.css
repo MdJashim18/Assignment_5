@@ -1,0 +1,46 @@
+body{
+    /* width: 1200px; */
+    /* border: 1px solid gray; */
+    margin: auto;
+    background-color: rgb(241, 234, 234);
+}
+li{
+    list-style: none;
+}
+nav{
+    background-color:aqua;
+
+}
+.menu{
+    font-size: 20px;
+}
+.menu:hover{
+    color: white;
+    cursor: pointer;
+}
+
+
+.card{
+    width: 400px;
+    gap: 10px;
+}
+.service{
+    margin-bottom: 50px;
+}
+.doc-details-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    gap: 50px;
+    width: 75%;
+    margin: auto;
+}
+.doctor-img img{
+    width: 100%;
+    height: 300px;
+}
+
+footer{
+    padding: 50px;
+    background: linear-gradient(66deg, #1CA8C7 -5.25%, #439FA5 46.76%, #4C7D8C 98.77%);;
+}
